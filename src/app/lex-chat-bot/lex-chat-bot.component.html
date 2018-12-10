@@ -1,0 +1,32 @@
+<div class="lex">
+  <div class="header" (click)="showBot = !showBot" [class.header-top]="showBot">
+    <span class="chat-bot-title">Chat bot</span>
+    <i class="material-icons" [class.rotate]="showBot">keyboard_arrow_up</i>
+  </div>
+  <div class="discussion" [style.height.px]="showBot ? 400 : 0">
+    <div class="view" #responseEl [class.remove]="removeFlexEnd">
+      <div class="responses" #innerResponse>
+
+        <ng-container *ngFor="let response of responses;">
+          <div class="user-response" *ngIf="response.type === 'user'">
+            <span>{{response.message}}</span>
+          </div>
+          <div class="lex-response" *ngIf="response.type !== 'user'">
+            {{response.message}}
+            <div class="response-card" *ngFor="let card of response.responseCard?.genericAttachments">
+              <img class="image" [src]="card.imageUrl">
+              <div class="buttons" *ngFor="let button of card.buttons">
+                <button mat-button (click)="addResponse(userResponse = button.text)">{{button.text}}</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="input">
+      <mat-form-field class="example-full-width" floatLabel="never">
+        <input autocomplete="off" matInput [(ngModel)]="userResponse" placeholder="Type Your Responses Here" (keyup.enter)="addResponse()">
+      </mat-form-field>
+    </div>
+  </div>
+</div>

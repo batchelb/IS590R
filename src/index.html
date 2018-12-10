@@ -4,11 +4,21 @@
   <meta charset="utf-8">
   <title>IS590RFinal</title>
   <base href="/">
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.41.0.min.js"></script>
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    AWS.config.region = 'us-east-1'; // Region
+    var lexUserId = 'chatbot-demo' + Date.now();
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+		// Provide your Pool Id here
+			IdentityPoolId: 'us-east-1:ff2ed588-2691-4791-8632-5ceaf76631ab',
+    });
+    var lexruntime = new AWS.LexRuntime();
+  </script>
 </body>
 </html>
