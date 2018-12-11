@@ -16,7 +16,7 @@
             <div class="response-card" *ngFor="let card of response.responseCard?.genericAttachments">
               <img class="image" [src]="card.imageUrl">
               <div class="buttons" *ngFor="let button of card.buttons">
-                <button mat-button (click)="addResponse(userResponse = button.text)">{{button.text}}</button>
+                <button mat-button (click)="addResponse(userResponse = button.value)">{{button.text}}</button>
               </div>
             </div>
           </div>

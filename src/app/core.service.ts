@@ -14,8 +14,8 @@ export class CoreService {
 
 
   getNews(endpoint, category, country) {
-  (endpoint === 'top-headlines' ?  this.http.get(`https://newsapi.org/v2/top-headlines?q=${category}&apiKey=d9e3106bbe1a45d3b88cef653dbf664e`)
-    : this.http.get(`https://newsapi.org/v2/everything?country=${country}&category=${country}&apiKey=d9e3106bbe1a45d3b88cef653dbf664e`)).subscribe((response:any) => {
+  (endpoint === 'top-headlines' ?  this.http.get(`https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=d9e3106bbe1a45d3b88cef653dbf664e`)
+    : this.http.get(`https://newsapi.org/v2/everything?q=${category}&apiKey=d9e3106bbe1a45d3b88cef653dbf664e`)).subscribe((response:any) => {
       this.news = response.articles.map((article)=>{
         article.content = article.content ? article.content.substring(0,article.content.length -14) : '';
         return article;
